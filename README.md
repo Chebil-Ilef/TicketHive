@@ -4,9 +4,38 @@ TicketHive is an e-commerce platform that allows users to easily purchase ticket
 
 💫 Our website is built using modern web technologies, including for the :
 
-* Fontend: Html, Css, Bootstrap, Javascript
+- Fontend: Html, Css, Bootstrap, Javascript
 
-* Backend: MySql, PHP, Symfony framework
+- Backend: MySql, PHP, Symfony framework
+
+and includes:
+
+* user authentification
+
+* event adding with map localisation
+
+* event filter (date/genre..)
+
+* CRUD operations for tickets and users
+
+* Ticket pdf + qr code generating
+
+* Admin dashboard with stats and graphs using graphjs
+
+* Contact message using APIs
 
 NOTE: this repository conatains the full source code of the website. (both frontend and backend)
+
+💫 Collaborators:
+
+@Chebil-Ilef
+
+@Med-Fedi-Adel 
+
+@FkihMehdi
+
+@oumayma159
+
+@AbdelhakGhribi
+
 
