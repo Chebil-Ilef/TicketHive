@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+Payment Checkout
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/payment/payment.css')}}"/>
+    <link rel="icon" href="{{ asset('assets/images/faviconM.ico') }}">
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block header %}
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+{% block body %}
+
+    <div class="big-container">
+    
+    <div class="container">
+        <form action="{{path('ticket')}}" method="GET">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">Personal information</h3>
+                    <div class="inputBox">
+                        <span>First name :</span>
+                        <input type="text" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Last name :</span>
+                        <input type="text"  placeholder="Enter your last name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Country :</span>
+                        <input type="text" placeholder="your country" required>
+                    </div>
+
+                    {# {% block  %} #}
+                        <div class="inputBox">
+                            <span>Total :</span>
+                            <input type="number" placeholder="..." value="{{ total }}" readonly> 
+                        </div>
+                    {# {% endblock %} #}
+
+                </div>
+
+                <div class="col">
+
+                    <h3 class="title">payment</h3>
+
+                    <div class="inputBox">
+                        <span>cards accepted :</span>
+                        <!-- <img src="card_img.png" alt=""> -->
+                        <div class="credit-cards" style="text-align: left ; width: 100%">
+                            <img height="40" src="{{asset('assets/images/payment/cards.png')}}"/>
+                            <img height="40" src="{{asset('assets/images/payment/E-Dinar (1).png')}}"/>
+                        </div>
+                    </div>
+                    <div class="inputBox">
+                        <span> CIN :</span>
+                        <input type="text" placeholder="CIN or passport number" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>Full Name on card :</span>
+                        <input type="text" placeholder="Name on card" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>credit card number :</span>
+                        <input type="number" placeholder="Type a valid number" required>
+                    </div>
+
+                    <div class="flex">
+                        <div class="inputBox">
+                            <span>exp month :</span>
+                            <input type="text" placeholder="Janvier" required>
+                        </div>
+                        <div class="inputBox">
+                            <span>exp year :</span>
+                            <input type="number" placeholder="2024"required>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <input type="submit" value="Buy Now" class="submit" id="boutton">
+        </form>
+    </div>
+</div> 
+
+<script src="{{asset('assets/js/Checkout/script.js')}}"></script>
+
+{% endblock %}

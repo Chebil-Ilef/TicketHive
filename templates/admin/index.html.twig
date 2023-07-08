@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    {#JS+ Chart JS#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('assets/js/admin/admin.js') }}" defer></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin/admin.css') }}" />
+
+    <!-- favicon -->
+    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}">
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+    <!-- Nav Bar -->
+    <nav class="nav">
+        <ul class="nav__links">
+        <a class="navbar-brand" href="">Admin Dashboard</a>
+            <li class="nav-item">
+                <a class="nav-link" href="#section--1">Analytics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section--2">List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section--3">Charts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="{{ path('main') }}">Home</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="header" id="section--1">
+    <div class="header__title" >
+
+            <h1 class="display-4 d-none d-sm-block" id="admin">
+                Welcome Admin!👋🏻
+            </h1>
+            <p class="lead d-none d-sm-block">Enjoy your success with accurate numbers, statistic and charts!</p>
+        <br><br>
+    </div>
+        <!--/row-->
+            <div class="row">
+                <div class="col-sm col-lg-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('/assets/images/admin/users.jpg') }}" alt="Card image cap">
+                        <div class="card-block">
+                            <br>
+                            <h4 class="card-title"><b>Users</b></h4>
+                            <p class="card-text counter">{{ clientCount }}</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('/assets/images/admin/events.jpg') }}" alt="Card image cap">
+                        <div class="card-block">
+                            <br>
+                            <h4 class="card-title"><b>Events</b></h4>
+                            <p class="card-text counter">{{ eventCount }}</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('/assets/images/admin/tickets.jpg') }}" alt="Card image cap">
+                        <div class="card-block">
+                            <br>
+                            <h4 class="card-title"><b>Tickets</b></h4>
+                            <p class="card-text counter">{{ ticketCount }}</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('/assets/images/admin/feedbacks.jpg') }}" alt="Card image">
+                        <div class="card-block">
+                            <br>
+                            <h4 class="card-title"><b>Testimonials</b></h4>
+                            <p class="card-text counter">{{ testimonialCount }}</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!--/row-->
+
+</header>
+
+
+<section id="section--2">
+    <div class="header__title">
+        <br> <br>
+        <h1 class="display-4 d-none d-sm-block" id="admin">
+            List of users  ️💁🏻‍♂️
+        </h1>
+        <p class="lead d-none d-sm-block">Your fidele clients need your guidance and administration!</p>
+        <br>
+    </div>
+    <div class="container">
+                <div class=" table col-lg-9 col-md-8">
+                    <div class="table-responsive" style="overflow-y: scroll; max-height: 500px;">
+                        <table class="table table-striped">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                {# <th>Password</th> #}
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    {# <td>{{ user.password }}</td> #}
+                                    <td>
+                                        <form method="POST" action="{{ path('delete_user', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br> <br> <br>
+                </div>
+            </div>
+    <br> <br> <br>
+</section>
+
+
+    <section id="section--3">
+        <div class="Chartcontainer">
+            <h1 class="display-4 d-none d-sm-block" id="admin">Chart & Stats 📊</h1>
+            <p class="lead d-none d-sm-block">Events by categories</p>
+            <canvas id="Events" width="400" height="100"></canvas>
+            {# numbers of feedbacks by users chart in a time period #}
+            <canvas id="feedbacks" width="400" height="100"></canvas>
+        </div>
+        {# saving the chart variables #}
+        <div id="evtData" data-my-variable="{{ eventData | json_encode }}"></div>
+        <div id="evtLabels" data-my-variable="{{ eventLabels | json_encode }}"></div>
+
+
+
+    </section>
+
+
+            {#footer#}
+            <footer class="footer">
+                <ul class="footer__nav">
+                    <li class="footer__item">
+                        <a class="footer__link" href="#section--1">Analytics</a>
+                    </li>
+                    <li class="footer__item">
+                        <a class="footer__link" href="#section--2">Table</a>
+                    </li>
+                    <li class="footer__item">
+                        <a class="footer__link" href="#section--3">Charts</a>
+                    </li>
+                </ul>
+                <img src="{{ asset('/assets/images/faviconP.png') }}" alt="logo" class="nav__logo" id="logo" />
+            </footer>
+
+
+
+</body>
+</html>

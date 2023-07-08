@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="{{ asset('assets/images/faviconM.ico') }}">
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{asset('/assets/css/UpdateUser/style.css')}}" />
+
+    <!-- <script
+      defer
+      src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"
+    ></script> -->
+    <script defer src="script.js"></script>
+    <title>Update</title>
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div class="container">
+      <!-- content container -->
+
+      <div class="content">
+        <a href="{{ path('main')}}"> <h2 class="logo">TicketHive</h2></a>
+        <div class="text-sci">
+          <h2>Safely <br /><span>Update Your Infos</span></h2>
+          <p>
+            no need to worry , we've got you covered !
+          </p>
+
+          <div class="social-icons">
+            <a href="#"><i class="bx bxl-linkedin"></i></a>
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+            <a href="#"><i class="bx bxl-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="logreg-box">
+        <!-- Login container -->
+
+        <div class="form-box login">
+          <form action="{{path('app_update')}}" method="post">
+            <h2>Update</h2>
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-envelope"></i></span>
+              <input type="email" name="email" required />
+              <label>Email</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="text" name="username" required />
+              <label>User Name</label>
+            </div>
+
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" name="oldpassword" required />
+              <label>Old Password</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" name="newpassword" required />
+              <label>New Password</label>
+            </div>
+
+            <div class="input-box">
+              <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+              <input type="password" name="confirm" required />
+              <label>Confirm Password</label>
+            </div>
+
+            <button type="submit" name="signin" class="btn">Change</button>
+          </form>
+        </div>
+
+        <!-- Register container -->
+      </div>
+    </div>
+  </body>
+</html>

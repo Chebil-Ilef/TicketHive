@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.name }}</title>
+</head>
+<body>
+    <h1 style="background-color:#00ffdd">TicketHive</h1>
+    <br><br><br>
+    <h1>Event Name: {{ event.name }}</h1>
+    <p><strong>Date:</strong> {{ event.date|date('d/m/Y') }}</p>
+    {# <p><strong>Description:</strong> {{ event.description }}</p> #}
+    {# <p><strong>Number of places:</strong> {{ event.nbplaces }}</p> #}
+    <p><strong>Price:</strong> {{ event.price }} dt</p>
+    {# {% if event.image is not null %}
+        <img src="{{ asset('uploads/' ~ event.image) }}" alt="{{ event.name }} image" style="max-width: 100%;">
+    {% endif %}
+    {% if event.gif is not null %}
+        <img src="{{ asset('uploads/' ~ event.gif) }}" alt="{{ event.name }} GIF" style="max-width: 100%;">
+    {% endif %} #}
+    {# <p><strong>Client:</strong> {{ event.clientid.getName() }}</p> #}
+    <p><strong>Event type:</strong> {{ event.EventType }}</p>
+    <h1 style="background-color:#00ffdd;">HAVE FUN </h1>
+    <br><br><br>
+    {% set qrstring = event.id ~' Client '~ app.session.get('username') %}
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{qrstring}}" alt="QR code">
+    {# <br><br><br><br><br><br> #}
+    
+
+</body>
+</html>

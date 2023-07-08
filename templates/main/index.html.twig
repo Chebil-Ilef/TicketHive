@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    {# <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    /> #}
+
+    <!-- favicon -->
+    <link rel="icon" href="{{ asset('assets/images/faviconM.ico') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/main/style.css') }}" />
+    <title>TicketHive</title>
+
+    <script defer src="{{ asset('assets/js/main/script.js') }}"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <!-- Nav Bar -->
+      <nav class="nav">
+
+        <img src="{{ asset('assets/images/picc.png ') }}" alt="" class="nav__logo" id="logo" />
+        <a class="navbar-brand" href="{{path ('main')}}">TicketHive</a>
+
+
+        <ul class="nav__links">
+          <li class="nav__item">
+            <a class="nav__link" href="#section--1">Events</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#section--2">Catalogue</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#section--3">Testimonials</a>
+          </li>
+          {# check if username=admin unique then show the admin button#}
+          {% if app.session.get('username') == 'admin'%}
+            <div class="app-header-actions">
+              <button class="user-profile" id="userprofile">
+                <span>
+                    {{ app.session.get('username')|slice(0,1) }}
+                  </span>
+              </button>
+            </div>
+        </ul>
+      </nav>
+      <div class="header__title">
+        <h1>
+          Enjoy Your
+          <!-- Green highlight effect -->
+          <span class="highlight"> Success </span>
+          Via<br />
+          Consulting
+          <span class="highlight"><a  target="_blank" href="{{ path('admin') }}" style="color:#00ffdd; text-decoration: none">Admin Dashboard</a></span>
+        </h1>
+        <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
+      </div>
+    </header>
+          {% elseif app.session.get('username') %}
+            <div class="app-header-actions">
+              <button class="user-profile">
+             <span>
+             <i class="fa-solid fa-basket-shopping fa-xl" id="open-cart-icon"></i>
+              </span>
+              </button>
+              <button class="user-profile" id="userprofile">
+                <span>{{ app.session.get('username') }}</span>
+                <span>
+                    {{ app.session.get('username')|slice(0,1) }}
+                  </span>
+              </button>
+            </div>
+          {% else %}
+            <a class="nav__link nav__link--btn btn--show-modal" href="#">Log in</a>
+          {% endif %}
+          </li>
+
+        </ul>
+      </nav>
+
+    {% if app.session.get('username') != 'admin'%}
+      <div class="header__title">
+        <h1>
+          Experience
+          <!-- Green highlight effect -->
+          <span class="highlight">Effortless</span>
+          Ticket<br />
+          Buying for Your
+          <span class="highlight">Favorite</span>
+          Event
+        </h1>
+        <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
+      </div>
+    </header>
+    {% endif %}
+
+    {% if app.session.get('username') %}
+      <div class="dropdown-user">
+      <li id="update">Update</li>
+      <li id="addevent">Add Event</li>
+      <li id="logout">Logout <i class="fa-solid fa-arrow-right-from-bracket fa-2xs"></i></li>
+    </div>
+    {% endif %}
+
+    <section class="section section--hidden" id="section--1">
+  <div class="section__title">
+    <h2 class="section__description">Events</h2>
+    <h3 class="section__header">Go out and have fun. You only live once.</h3>
+  </div>
+
+  <div class="operations">
+    <div class="operations__tab-container">
+      <button class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1">
+        <span>01</span>Today
+      </button>
+      <button class="btn operations__tab operations__tab--2" data-tab="2">
+        <span>02</span>This Weekend
+      </button>
+      <button class="btn operations__tab operations__tab--3" data-tab="3">
+        <span>03</span>Coming Soon
+      </button>
+    </div>
+    <div class="operations__content operations__content--1 operations__content--active">
+      <div class="slider1">
+        {% if eventT is defined %}
+          {% for event in eventT %}
+            <a href="{{path ('event_description',{'id' : event.id })}}">
+              {% if event.image %}
+                <img src="{{ asset('assets/images/uploads/' ~ event.image) }}" id="slide{{loop.index}}">
+              {% else %} 
+                <img src="{{ asset('assets/images/Default.jpg')}}" id="slide{{loop.index}}"> 
+               {% endif %}
+              {# <div class="text" style="color: white;">
+                <p>
+                  {{event.name}}
+                  <span class="small">{{ event.date|date('Y-m-d') }}</span>
+                </p>
+              </div> #}
+            </a>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="slider1-nav">
+        {% if eventT is defined %}
+          {% for event in eventT %}
+            <a href="#slide{{loop.index}}"></a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="operations__content operations__content--2">
+    <div class="slider2">
+      {% if eventW is defined %}
+        {% for event in eventW %}
+          <a href="{{path ('event_description',{'id' : event.id })}}">
+            {% if event.image %}
+              <img src="{{ asset('assets/images/uploads/' ~ event.image) }}" id="slide{{loop.index}}">
+            {% else %}
+              <img src="{{ asset('assets/images/Default.jpg')}}" id="slide{{loop.index}}">
+            {% endif %}
+            <div class="text" style="color: white;">
+              <p>
+                {{event.name}}
+                <span class="small">{{ event.date|date('Y-m-d') }}</span>
+              </p>
+            </div>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+<div class="slider2-nav">
+{% if eventT is defined %}
+{% for event in eventT %}
+<a href="#slide{{loop.index}}"></a>
+{% endfor %}
+{% endif %}
+</div>
+
+  </div>
+  <div class="operations__content operations__content--3">
+    <div class="slider3">
+      {% if eventU is defined %}
+      {% for event in eventU %}
+      <a href="{{path ('event_description',{'id' : event.id })}}">
+        {% if event.image %}
+        <img src="{{ asset('assets/images/uploads/' ~ event.image) }}" id="slide{{loop.index}}">
+        {% else %}
+        <img src="{{ asset('assets/images/Default.jpg')}}" id="slide{{loop.index}}">
+        {% endif %}
+        <div class="text" style="color: white;">
+          <p>
+            {{event.name}}
+            <span class="small">{{ event.date|date('Y-m-d') }}</span>
+          </p>
+        </div>
+      </a>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="slider3-nav">
+      {% if eventT is defined %}
+        {% for event in eventT %}
+          <a href="#slide{{loop.index}}"></a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+    <section class="flow section" id="section--2">
+      <h1 class="catalogueTitle catalogue-animation ">Our Catalogue</h1>
+      <div style="font-size: 1.5rem; text-align: center; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+        Simply hover over the cards to get a sneak peek of the events,<br>or click on a category to dive deeper into the world of entertainment<br>and purchase your tickets! 🎟️
+      </div>
+      <div class="team">
+        <ul class="auto-grid" role="list">
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'Festivals'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/festivals.jpg') }}');"> 
+              <h2 class="card__name">Festivals</h2>
+              <p class="catP">Discover the hottest festivals in town and experience the ultimate party scene.</p>
+            </a>
+          </li>
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'Sports'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/sport.jpg') }}');">
+              <h2 class="card__name">Sport</h2>
+              <p class="catP">Get your adrenaline pumping with our thrilling sports events and buy your tickets now.</p>
+            </a>
+          </li>
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'Concerts'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/concerts.jpg') }}');"> 
+              <h2 class="card__name">Concerts</h2>
+              <p class="catP">Immerse yourself in the music and attend the most happening concerts in the city.</p>
+            </a>
+          </li>
+      
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'theatre'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/theatre.jpg') }}');"> 
+              <h2 class="card__name">Theatre</h2>
+              <p class="catP">Indulge in the world of drama and witness the finest plays and theatre performances.</p>
+            </a>
+          </li>
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'Cinema'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/cinema.jpg') }}');"> 
+              <h2 class="card__name">Cinema</h2>
+              <p class="catP">Get your popcorn ready and browse our collection of movies and cinema experiences.</p>
+            </a>
+          </li>
+          <li>
+             <a href="{{ path ('event.filterType',{'eventType': 'Other'}) }}" target="_blank" class="cardGrid" style="background-image: url('{{ asset('assets/images/main/catalogue/other.jpg') }}');"> 
+              <h2 class="card__name">Other</h2>
+              <p class="catP">Explore a diverse range of unique events that don't fit into the other categories.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+
+    <section class="section section--hidden" id="section--3">
+      <div class="section__title section__title--testimonials">
+        <h2 class="section__description">Not sure yet?</h2>
+        <h3 class="section__header">
+          New lifestyle coming ahead with our events.
+        </h3>
+      </div>
+ 
+      <div class="slider">
+      {% if tab is defined %}
+        {% for name,text in tab %}
+        <div class="slide">
+          <div class="testimonial">
+            <h5 class="testimonial__header">{{name}}</h5>
+            <blockquote class="testimonial__text">
+              {{text}}
+            </blockquote>
+          </div>
+        </div>
+      {% endfor %}
+      {% endif %}
+      
+        <button class="slider__btn slider__btn--left"><</button>
+        <button class="slider__btn slider__btn--right">></button>
+        <div class="dots"></div>
+
+
+    </section>
+
+
+    <section class="section section--feedback section--hidden">
+      <div class="section__title">
+        <h2 class="section__description">You have something to say ?</h2>
+        <h3 class="section__header">Give us your feedback !</h3>
+      </div>
+
+      <div class="field-group">
+      <form action="{{path('feedback')}}" method="post">
+        <textarea name="feedback" id="feedback" cols="30" rows="10" class="textarea-field" placeholder="Enter Feedback"></textarea>
+        <!-- <label for="feedback" class="textarea-label">Enter your message</label> -->
+        {% if app.session.get('username') %}
+          <input type="submit" name="fsubmit" class="btn">
+          {% else %}
+          <input type="submit" name="fsubmit" class="btn btn--show-modal">
+        {% endif %}
+      </form>
+      
+      </div>
+    </section>
+
+{% if not (app.session.get('username')) %}
+    <section class="section section--sign-up section--hidden">
+      <div class="section__title">
+        <h3 class="section__header">
+          The best day to join us is TODAY. The second best is now!
+        </h3>
+      </div>
+      <button class="btn btn--show-modal">Open your free account today!</button>
+    </section>
+{% endif %}
+
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Open your account <br />
+        in just <span class="highlight"> 5 minutes</span>
+      </h2>
+      <div class="modal__form form-box login">
+        <form method="POST" action="{{path('login_signin')}}">
+          <div class="input-box">
+            <span class="icon"><i class="bx bxs-envelope"></i></span>
+            <input type="email" name="email" required />
+            <label>Email</label>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+            <input type="password" name="password" required />
+            <label>Password</label>
+          </div>
+          <div class="remember-forgot">
+            <label
+              ><input type="checkbox" name="remember" />Remember me</label
+            >
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" name="signin" class="btn">Sign In</button>
+          <div class="login-register">
+            <p>
+              Don't have an account?
+              <a href="{{ path('login_signup')}}" class="register-link">Sign up</a>
+            </p>
+          </div>
+</form>
+    </div>
+    </div>
+    <div class="overlay hidden"></div>
+
+
+    <!-- CART MODAL WINDOWS -->
+    <div class=" modal modal-container hidden">
+      <button class="btn--close-modal close-button" id="close-btn">&times;</button>
+      <h2 class="modal__header">
+        Shopping Cart
+      </h2>
+      <div class="cart-items-container">
+        {% if items is defined and items|length != 0 %}
+        <form class="modal__form form-box login" action="{{ path('cart_payment') }}" method="post">
+          {% for item in items %}
+            <div class="cart-box">
+              {% if item.event.image %}
+                <img src="{{ asset('/assets/images/uploads/'~ item.event.image) }}" alt="{{ item.event.name }}" class="cart-img" style="border-radius: 10px; padding: 0 0; ">
+              {% else %}
+                <img src="{{ asset('/assets/images/main/catalogue/concerts.jpg') }}" alt="{{ item.event.name }}" class="cart-img" style="border-radius: 10px; padding: 0 0;">
+              {% endif %}
+              <div class="detail-box">
+                <div class="cart-product-title" >{{ item.event.name }} </div>
+                  <input type="number" name="quantity_{{ item.event.id }}" value="{{ item.quantity }}" min="1" max="{{ item.event.nbPlaces }}" class="cart-quantity">
+                <div class="cart-price" data-initial-price="{{ item.event.price }}">{{ item.event.price * item.quantity }}</div>
+              </div>
+
+              <!-- Remove Cart -->
+              <a href="{{ path('cart_remove', {'id': item.event.id}) }}" class="cart-remove" data-method="delete"><i class='fas fa-trash-alt'></i></a>
+            </div>
+          {% endfor %}
+          <div class="payer">
+            <hr>
+            <div>
+              <div class="remember-forgot">
+                <div class=”total-title”>Total : </div>
+                <div class=”total-price” id="total-price">{{ total }}</div>
+              </div>
+              <button class="btn">Checkout</button>
+            </div>
+          </div>
+          {% else %}
+            <p>Cart is empty..</p>
+            <br>
+            <button class="btn"><a href="#section--2" style="text-decoration: none"> Go buy your tickets</a></button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+
+
+
+{#footer#}
+    <footer class="footer">
+      <ul class="footer__nav">
+        <li class="footer__item">
+          <a class="footer__link" href="#">About</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" target="_blank" href="#">Pricing</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href="#">Privacy Policy</a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" target="_blank" href="{{path('contact')}}">Contact Us</a>
+        </li>
+      </ul>
+      <img src="{{ asset('/assets/images/faviconP.png') }}" alt="logo" class="nav__logo" id="logo" />
+    </footer>
+
+  </body>
+</html>

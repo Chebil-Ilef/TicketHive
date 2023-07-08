@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('assets/images/faviconM.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/contact/contact.css') }}">
+    <title>Contact Us</title>
+</head>
+<body>
+    <section class="contact">
+        <div class="content">
+            <h2>Contact Us</h2>
+            <p>Welcome to our Contact Us page! Here, you can easily get in 
+               touch with us for any inquiries, feedback, or complaints. We 
+               are committed to providing you with the best possible customer
+               service, and we value your opinions and suggestions. Please feel 
+               free to fill out the contact form or reach out to us directly via 
+               email or phone. We are always here to help and look forward to 
+               hearing from you!
+            </p>
+        </div>
+        <div class="container">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="text">
+                        <h3>Our Address</h3>
+                        <p>INSAT : <br> Institut National des sciences appliquées et de technologie</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <div class="text">
+                        <h3>Phone number</h3>
+                        <p>+216 27 111 999</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="text">
+                        <h3>Our Email</h3>
+                        <p>event.organiser@gmail.com </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contactForm">
+                <form>
+                    <h2>Send Message</h2>
+                    <div class="inputBox">
+                        <input type="text" name="name" required="required" id="fullname">
+                        <span>Full Name </span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea name="textarea"
+                        rows="8" cols="48"
+                        placeholder="  Please write your question here...." id="message"></textarea>
+                       <!-- <span>Type your Message : </span> -->
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" name="" value="Send" id="bouton">
+                    </div>
+                </form>
+            </div> 
+        </div>
+    </section>
+
+    <script src="{{ asset('assets/js/Contact/script.js') }}"></script>
+    
+</body>
+</html>

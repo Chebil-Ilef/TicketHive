@@ -1,0 +1,76 @@
+<title>
+{% block title %}{{ event.name }}{% endblock %}
+</title>
+{% block stylesheets %}
+    {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> #}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/ticket/ticket.css')}}"/>
+
+{% endblock %}
+
+
+
+{% block header %}
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+
+{% block body %}
+    <div class="ticket">
+        <div class="left">
+            <div class="image"
+                style="background-image:url('{{ asset('uploads/' ~ event.image) }}')"
+            >
+                <p class="admit-one">
+                    <span>ADMIT ONE</span>
+                    <span>ADMIT ONE</span>
+                    <span>ADMIT ONE</span>
+                </p>
+                {# <img src="{{ asset('uploads/' ~ event.image) }}" width="275" height="320"> #}
+            </div>
+            <div class="ticket-info">
+                <p class="date">
+                    <span>{{ event.date|date('l')|upper }}</span>
+                    <span class="june-29">{{ event.date|date('F jS') }}</span>
+                    <span>{{ event.date|date('Y') }}</span>
+                </p>
+                <div class="show-name">
+                    <h1>{{ event.name }}</h1>
+                    <h2>{{ event.clientid.username }}</h2>
+                </div>
+                <div class="time">
+                    <p>{{ event.date|date('g:i A') }} <span>TO</span> {{ event.date|date_modify('+3 hours')|date('g:i A') }}</p>
+                    <p>DOORS <span>@</span> {{ event.date|date_modify('-1 hour')|date('g:i A') }}</p>
+                </div>
+                <p class="location">
+                    {# <span class="separator"><i class="far fa-smile"></i></span><span>{{ event.location }}</span> #}
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+            </p>
+            <div class="right-info-container">
+                <div class="time">
+                    <p>{{ event.date|date('g:i A') }} <span>TO</span> {{ event.date|date_modify('+3 hours')|date('g:i A') }}</p>
+                </div>
+                <div class="barcode">
+                    <img src="{{ asset('uploads/events/' ~ event.image) }}" alt="QR code">
+                </div>
+                <p class="ticket-number">
+                    #{{ event.id }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello TicketController!{% endblock %}
+
+{% block body %}
+<div class="ticket">
+    <div class="left">
+        <div class="image"
+            style="background-image:url('{{ asset('assets/images/uploads/' ~ event.image) }}')"
+        >
+            <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+            </p>
+            {# <img src="{{ asset('uploads/' ~ event.image) }}" width="275" height="320"> #}
+        </div>
+        <div class="ticket-info">
+            <p class="date">
+                <span>{{ event.date|date('l')|upper }}</span>
+                <span class="june-29">{{ event.date|date('F jS') }}</span>
+                <span>{{ event.date|date('Y') }}</span>
+            </p>
+            <div class="show-name">
+                <h1>{{ event.name }}</h1>
+                <h2>{{ app.session.get('username') }}</h2>
+            </div>
+            <div class="time">
+                <p>{{ event.date|date('g:i A') }} <span>TO</span> {{ event.date|date_modify('+3 hours')|date('g:i A') }}</p>
+                <p>DOORS <span>@</span> {{ event.date|date_modify('-1 hour')|date('g:i A') }}</p>
+            </div>
+            <p class="location">
+                {# <span class="separator"><i class="far fa-smile"></i></span><span>{{ event.location }}</span> #}
+            </p>
+        </div>
+    </div>
+    <div class="right">
+        <p class="admit-one">
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+        </p>
+        <div class="right-info-container">
+            <div class="time">
+                <p>{{ event.date|date('g:i A') }} <span>TO</span> {{ event.date|date_modify('+3 hours')|date('g:i A') }}</p>
+            </div>
+            <div class="barcode">
+                {% set qrstring = event.id ~' Client '~ app.session.get('username') %}
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{qrstring}}" alt="QR code">
+            </div>
+            <p class="ticket-number">
+                #{{ event.id }}
+            </p>
+        </div>
+    </div>
+</div>
+<input type="number" style="display:none;" value="{{event.id}}" id="dow">
+<button class="download" id="download">Download pdf &#160 &#160<i class="fa-solid fa-file-arrow-down fa-lg"></i></button>
+<script src="{{ asset('assets/js/Ticket/script.js') }}"></script>
+{% endblock %}

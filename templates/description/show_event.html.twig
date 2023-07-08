@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/Description/Description.css')}}"/>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Leaflet CSS-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+  
+
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.css"
+            integrity="sha512-v5YmWLm8KqAAmg5808pETiccEohtt8rPVMGQ1jA6jqkWVydV5Cuz3nJ9fQ7ittSxvuqsvI9RSGfVoKPaAJZ/AQ=="
+            crossorigin=""
+        />
+
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+{% endblock %}
+
+
+
+{% block javascripts %}
+ <script
+    src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+<script
+    src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+    crossorigin="">
+</script>
+
+
+<!-- Load Esri Leaflet Geocoder from CDN -->
+
+<script
+    src="https://unpkg.com/esri-leaflet-geocoder@2.2.13/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-zdT4Pc2tIrc6uoYly2Wp8jh6EPEWaveqqD3sT0lf5yei19BC1WulGuh5CesB0ldBKZieKGD7Qyf/G0jdSe016A=="
+    crossorigin="">
+</script>
+    
+   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+   <script src="{{asset('assets/js/Description/Description.js')}}"></script>
+{% endblock %}
+
+
+
+{% block header %}
+ <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% endblock %}
+
+
+
+{% block body %}
+    <section class="section">
+      <div class="container">
+        <div class="fakeMenu">
+          <div class="fakeButtons fakeClose"></div>
+          <div class="fakeButtons fakeMinimize"></div>
+          <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="fakeScreen">
+          <p class="line1">
+            &#91;&nbsp;&ldquo;Date : {{ event.date|date('Y-m-d') }}&rdquo;,<span
+              class="cursor1"
+              >_</span
+            >
+          </p>
+          <p class="line2">
+            &nbsp;&nbsp;&ldquo;Location : {#A gerer#} &rdquo;,<span
+              class="cursor2"
+              >_</span
+            >
+          </p>
+          <p class="line3">
+            &nbsp;&nbsp;&ldquo;Latitude: {{event.latitude}}&rdquo;,<span class="cursor3"
+              >_</span
+            >
+          </p>
+          <p class="line4">
+            &nbsp;&nbsp;&ldquo;Longitude: {{event.longitude}}&rdquo;,<span
+              class="cursor4"
+              >_</span
+            >
+          </p>
+          <p class="line5">
+            &nbsp;&nbsp;&ldquo;Don't miss out on the
+            chance!&rdquo;&nbsp;&#93;<span class="cursor5">_</span>
+          </p>
+          <p class="line6">><span class="cursor6">_</span></p>
+        </div>
+      </div>
+      <div class="home-content">
+        <h1>
+          Next
+          <span class="highlight">{{event.name}}</span>
+          Event
+          {{event.getEventType()}}
+        </h1>
+        <div class="localisation">
+          <div class="location-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <h3 class="lecture hellohello">Amphiteatre Uthina</h3>
+        </div>
+        <div>
+          <h6 class="lecture" style = "font-size : 1.6rem;">
+            <br /><br />{{event.description}}
+          </h6>
+          </div>
+          <button class="btn--text btn--scroll-to" id="bouttonmap">
+          View Location In Map &DownArrow;
+          </button>
+
+           {% if tickets_remaining > 0 %}
+            <div class="bouton-lien">
+                <form action="{{ path('cart_add', { id: event.id}) }}" method="post">
+                <button type="submit" class="btn btn-primary add-to-cart" event-id="{{ event.id }}">Add to cart</button>
+                </form>
+            </div>
+            {% else %}
+            <div class="bouton-lien"> 
+                <button class="btn btn-secondary" disabled>Sold Out</button>
+            </div>
+            {% endif %}
+
+        </div>
+        <br/>x
+       </section>
+
+    <section class="section" id="section--1">
+      <div class="location" id="map">NETWORK ERROR TRY NTO ESTABLISH NETWORK WE LOVE YOU!</div>
+    </section>
+   
+
+{% endblock %}

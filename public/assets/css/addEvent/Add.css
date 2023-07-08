@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("../../images/login_signup/background.jpg") no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  backdrop-filter: blur(10px);
+}
+
+.container {
+  overflow: auto;
+  background: url("../../images/login_signup/background.jpg") no-repeat;
+  background-size: cover;
+  position: relative;
+  max-width: 700px;
+  height: 600px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 0px 15px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.container header {
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+
+
+.container header::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  height: 3px;
+  width: 27px;
+  background-color: blue;
+}
+
+.info {
+  margin: 30px;
+}
+
+.info div select{
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.info div select option{
+  color: black;
+  border: none;
+}
+
+.info .input_box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #e4e4e4;
+  margin: 2%;
+  margin-top: 50px;
+}
+
+.info .input_box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #e4e4e4;
+  font-weight: 500;
+  padding-right: 28px;
+}
+
+.dropdown .input_box {
+  background-color: transparent;
+}
+
+.dropdown .dropdown-menu {
+  height: 100px;
+  overflow: auto;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  border: 1px solid white;
+  margin: 2%;
+  bottom: 100px;
+}
+
+.dropdown .dropdown-menu li a {
+  color: white;
+}
+
+.dropdown .dropdown-menu li a:hover {
+  color: black;
+}
+
+.input_box label {
+  color: white;
+  position: absolute;
+  top: 60%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s ease;
+}
+
+.input_box input:focus ~ label,
+.input_box input:valid ~ label {
+  top: -5px;
+}
+
+.info textarea {
+  border: 1px solid white;
+  color: white;
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  margin: 2%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2%;
+  width: 100%;
+  /* background-color: blue; */
+  height: 30rem;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.image-container {
+  border-radius: 10px;
+  border: 1px solid white;
+  display: grid;
+  overflow-y: auto;
+  grid-auto-flow: column;
+  scroll-behavior: auto;
+  /* grid-gap: 2px; */
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.image-container::-webkit-scrollbar {
+  display: none;
+}
+
+.Add_image {
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(200, 200, 200);
+  width: 200px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info span {
+  color: black;
+  margin: 2%;
+}
+
+.bouton {
+  width: 60%;
+  display: inline-block;
+  margin-top: 10%;
+  margin-left: 20%;
+  background-color: #00ffdd;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 1.25rem 4.5rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+}
+
+.bouton:hover {
+  background-color: #89c4a3;
+}
+
+.latitude {
+  height: 0cm;
+  display: none;
+  visibility: hidden;
+}
+
+.longitude {
+  height: 0cm;
+  display: none;
+  visibility: hidden;
+}
