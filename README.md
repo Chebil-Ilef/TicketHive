@@ -28,14 +28,14 @@ NOTE: this repository conatains the full source code of the website. (both front
 
 💫 Collaborators:
 
-@Chebil-Ilef: @https://github.com/Chebil-Ilef
+Ilef Chebil : https://github.com/Chebil-Ilef
 
-@Med-Fedi-Adel 
+Med Fedi Adel :  https://github.com/Med-Fedi-Adel
 
-@FkihMehdi
+Fkih Mehdi : https://github.com/FkihMehdi
 
-@oumayma159
+Oumayma Elfidha: https://github.com/oumayma159
 
-@AbdelhakGhribi
+Abdelhak Ghribi : https://github.com/AbdelhakGhribi
 
 
